@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAXMOKIjLknUqrIsRsb93F/QAAAAACAAAAAAAQZgAAAAEAACAAAAAg0GCTTGhqKzFzaGWBDsT2U7iKTbj5ZQYhyTcLFcQPFgAAAAAOgAAAAAIAACAAAAAuysrBsD6Y52KOd2knLRMkWDWfZES/4TMzeMjsG18gPoAAAAAZyrNWGoop9IyId2rzP1kUDTcfZqlFVEV4luuS8BmHtVCAMUGj7A/0np19bltb9Y5LTwSn1nOvko2VmsHej7uKFqCRZdj4fYNh1OCsqg/tbZmP3vGRpOApcMbZ6/V+XPR7ADPWlkqFrG18Bi6I+S1oDmBH8gG/Z3YU+m3DyZ/unkAAAAAj6QehWaUzkiatanhNQAN57mNtn8pAzJOG4oJtERmybjU8Nd8KhgtFAmMnkRb7Qc+mDRQGRXGznYQ5QrxdKaXg</EncryptedPassword>
+    <History>True|2021-10-15T08:53:44.0388199Z;True|2021-10-15T11:49:32.8773056+03:00;True|2021-10-15T11:40:33.5293039+03:00;True|2021-09-30T18:46:57.8169290+03:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=tcp:infomoviesdbserver.database.windows.net,1433%3bInitial Catalog=InfoMovies_db%3bUser Id=adminkar33%40infomoviesdbserver%3bPassword=Kopustai8.</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="InfoMovies.Data.InfoMoviesContext">
+      <Value>Data Source=tcp:infomoviesdbserver.database.windows.net,1433%3bInitial Catalog=InfoMovies_db%3bUser Id=adminkar33%40infomoviesdbserver%3bPassword=Kopustai8.</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>
