@@ -6018,11 +6018,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Karolis\\Desktop\\InfoMovies\\InfoMovies\\InfoMovies.csproj",
+      "projectUniqueName": "C:\\Users\\Karolis\\Desktop\\SaitynaiGit\\InfoMovies\\InfoMovies\\InfoMovies.csproj",
       "projectName": "InfoMovies",
-      "projectPath": "C:\\Users\\Karolis\\Desktop\\InfoMovies\\InfoMovies\\InfoMovies.csproj",
+      "projectPath": "C:\\Users\\Karolis\\Desktop\\SaitynaiGit\\InfoMovies\\InfoMovies\\InfoMovies.csproj",
       "packagesPath": "C:\\Users\\Karolis\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Karolis\\Desktop\\InfoMovies\\InfoMovies\\obj\\",
+      "outputPath": "C:\\Users\\Karolis\\Desktop\\SaitynaiGit\\InfoMovies\\InfoMovies\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Yjv0RlOkCkItEXFHDre3KMKgRNktwvWTpdW7ie9bQgpG3LLA2j8zfQkXmB7yYXNYtvQGvx+Ureni15tePZPDeA==",
+  "dgSpecHash": "jWdu8eIizYDxB8Rg+/l9ar0FqIwYarIfYGsHh6so7RW/RNkbHJVBcW7WYOMuEDPKPZx1yDeS5X64XQQvLiQVMg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Karolis\\Desktop\\InfoMovies\\InfoMovies\\InfoMovies.csproj",
+  "projectFilePath": "C:\\Users\\Karolis\\Desktop\\SaitynaiGit\\InfoMovies\\InfoMovies\\InfoMovies.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Karolis\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Karolis\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
