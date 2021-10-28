@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using InfoMovies.Data.Repositories;
 using InfoMovies.Data;
+using InfoMovies.Auth;
 
 namespace InfoMovies
 {
@@ -24,6 +25,7 @@ namespace InfoMovies
             services.AddTransient<IMoviesRepository, MoviesRepository>();
             services.AddTransient<ICommentsRepository, CommentsRepository>();
             services.AddDbContext<InfoMoviesContext>();
+            services.AddTransient<ITokenManager, TokenManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

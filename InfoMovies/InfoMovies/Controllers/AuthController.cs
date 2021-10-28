@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InfoMovies.Auth;
 using InfoMovies.Data.Dtos.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -17,11 +18,13 @@ namespace InfoMovies.Controllers
     {
         private readonly UserManager<InfoMoviesUser> _userManager;
         private readonly IMapper _mapper;
+        private readonly ITokenManager _tokenManager;
 
-        public AuthController(UserManager<InfoMoviesUser> userManager, IMapper mapper)
+        public AuthController(UserManager<InfoMoviesUser> userManager, IMapper mapper, ITokenManager tokenManager)
         {
             _userManager = userManager;
             _mapper = mapper;
+            _tokenManager = tokenManager;
         }
 
         [HttpPost]
@@ -46,7 +49,7 @@ namespace InfoMovies.Controllers
             return CreatedAtAction(nameof(Register), _mapper.Map<UserDto>(newUser));
         }
 
-        /*[HttpPost]
+        [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login(LoginDto dto)
         {
@@ -59,6 +62,6 @@ namespace InfoMovies.Controllers
             if (!isPasswordValid)
                 return BadRequest("User name or password is invalid.");
 
-        }*/
+        }
     }
 }
