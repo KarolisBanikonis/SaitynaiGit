@@ -52,6 +52,7 @@ namespace InfoMovies
             services.AddTransient<ICommentsRepository, CommentsRepository>();
             services.AddDbContext<InfoMoviesContext>();
             services.AddTransient<ITokenManager, TokenManager>();
+            services.AddTransient<DatabaseSeeder, DatabaseSeeder>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using InfoMovies.Auth;
+using InfoMovies.Auth.Model;
 using InfoMovies.Data.Dtos.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -45,7 +46,7 @@ namespace InfoMovies.Controllers
             if (!createUserResult.Succeeded)
                 return BadRequest("Could not create a user.");
 
-            await _userManager.AddToRoleAsync(newUser, "SimpleUser");
+            await _userManager.AddToRoleAsync(newUser, InfoMoviesUserRoles.SimpleUser);
             return CreatedAtAction(nameof(Register), _mapper.Map<UserDto>(newUser));
         }
 
