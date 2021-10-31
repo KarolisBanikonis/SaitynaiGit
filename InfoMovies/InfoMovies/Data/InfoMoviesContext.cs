@@ -1,9 +1,11 @@
-﻿using InfoMovies.Data.Entities;
+﻿using InfoMovies.Data.Dtos.Auth;
+using InfoMovies.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace InfoMovies.Data
 {
-    public class InfoMoviesContext : DbContext
+    public class InfoMoviesContext : IdentityDbContext<InfoMoviesUser>
     {
         public DbSet<Company> Companies { get; set; }
         public DbSet<Movie> Movies { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InfoMovies.Data.Dtos.Auth
 {
-    public class InfoMoviesUser : IdentityUser<Guid>
+    public class InfoMoviesUser : IdentityUser
     {
         [PersonalData]
         public string AdditionalInfo { get; set; }

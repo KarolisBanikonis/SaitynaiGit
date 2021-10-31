@@ -65,7 +65,6 @@ namespace InfoMovies.Controllers
             var accessToken = _tokenManager.CreateAccessTokenAsync(user);
 
             return Ok(new SuccessfullLoginResponseDto(accessToken.ToString()));
-
         }
     }
 }
