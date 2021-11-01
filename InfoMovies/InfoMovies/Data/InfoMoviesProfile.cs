@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using InfoMovies.Data.Dtos;
+using InfoMovies.Data.Dtos.Auth;
 using InfoMovies.Data.Entities;
 
 namespace InfoMovies.Data
@@ -14,6 +15,8 @@ namespace InfoMovies.Data
             CreateMap<CreateMovieDto, Movie>();
             CreateMap<Comment, CommentDto>();
             CreateMap<CreateCommentDto, Comment>();
+            //Auth
+            CreateMap<InfoMoviesUser, UserDto>();
         }
     }
 }

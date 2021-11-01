@@ -14,6 +14,7 @@ namespace InfoMovies.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server = tcp:infomoviesdbserver.database.windows.net, 1433; Initial Catalog = InfoMovies_db; Persist Security Info = False; User ID = adminkar33; Password = Kopustai8. ; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30; Trusted_Connection=False");
+            //optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB; Initial Catalog=InfoMovies");
         }
     }
 }
