@@ -55,7 +55,7 @@ namespace InfoMovies.Controllers
         public async Task<ActionResult> Login(LoginDto dto)
         {
             var user = await _userManager.FindByNameAsync(dto.UserName);
-            if (user != null)
+            if (user == null)
             {
                 return BadRequest("User name or password is invalid.");
             }
@@ -63,9 +63,9 @@ namespace InfoMovies.Controllers
             if (!isPasswordValid)
                 return BadRequest("User name or password is invalid.");
 
-            var accessToken = _tokenManager.CreateAccessTokenAsync(user);
+            var accessToken = await _tokenManager.CreateAccessTokenAsync(user);
 
-            return Ok(new SuccessfullLoginResponseDto(accessToken.ToString()));
+            return Ok(new SuccessfullLoginResponseDto(accessToken));
         }
     }
 }
