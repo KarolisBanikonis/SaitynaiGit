@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using InfoMovies.Auth.Model;
 using InfoMovies.Data.Dtos;
 using InfoMovies.Data.Entities;
 using InfoMovies.Data.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,13 +19,15 @@ namespace InfoMovies.Controllers
         private readonly IMapper _mapper;
         private readonly IMoviesRepository _moviesRepository;
         private readonly ICompaniesRepository _companiesRepository;
+        private readonly IAuthorizationService _authorizationService;
 
-        public CommentsController(ICommentsRepository commentsRepository, IMapper mapper, IMoviesRepository moviesRepository, ICompaniesRepository companiesRepository)
+        public CommentsController(ICommentsRepository commentsRepository, IMapper mapper, IMoviesRepository moviesRepository, ICompaniesRepository companiesRepository, IAuthorizationService authorizationService)
         {
             _commentsRepository = commentsRepository;
             _mapper = mapper;
             _moviesRepository = moviesRepository;
             _companiesRepository = companiesRepository;
+            _authorizationService = authorizationService;
         }
 
         [HttpGet]
@@ -43,6 +47,7 @@ namespace InfoMovies.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = InfoMoviesUserRoles.SimpleUser)]
         public async Task<ActionResult<CommentDto>> Create(int companyId, int movieId, CreateCommentDto dto)
         {
             var company = await _companiesRepository.Get(companyId);
@@ -53,6 +58,8 @@ namespace InfoMovies.Controllers
 
             var comment = _mapper.Map<Comment>(dto);
             comment.MovieId = movieId;
+            //Put user id
+            comment.UserId = User.FindFirst(CustomClaims.UserId).Value;
 
             await _commentsRepository.Create(comment);
 
@@ -60,6 +67,7 @@ namespace InfoMovies.Controllers
         }
 
         [HttpPut("{commentId}")]
+        [Authorize(Roles = InfoMoviesUserRoles.SimpleUser)]
         public async Task<ActionResult<CommentDto>> Edit(int companyId, int movieId, int commentId, CreateCommentDto dto)
         {
             var company = await _companiesRepository.Get(companyId);
@@ -71,6 +79,12 @@ namespace InfoMovies.Controllers
             var oldComment = await _commentsRepository.Get(companyId, movieId, commentId);
             if (oldComment == null) return NotFound($"Couldn't find a comment with id of {commentId}");
 
+            var authorizationResult = await _authorizationService.AuthorizeAsync(User, oldComment, PolicyNames.SameUser);
+
+            if (!authorizationResult.Succeeded)
+                //403
+                return Forbid();
+
             _mapper.Map(dto, oldComment);
 
             await _commentsRepository.Edit(oldComment);
@@ -79,10 +93,17 @@ namespace InfoMovies.Controllers
         }
 
         [HttpDelete("{commentId}")]
+        [Authorize(Roles = InfoMoviesUserRoles.SimpleUser)]
         public async Task<ActionResult> Delete(int companyId, int movieId, int commentId)
         {
             var comment = await _commentsRepository.Get(companyId, movieId, commentId);
             if (comment == null) return NotFound($"Couldn't find a comment with id of {commentId}");
+
+            var authorizationResult = await _authorizationService.AuthorizeAsync(User, comment, PolicyNames.SameUser);
+
+            if (!authorizationResult.Succeeded)
+                //403
+                return Forbid();
 
             await _commentsRepository.Delete(comment);
 

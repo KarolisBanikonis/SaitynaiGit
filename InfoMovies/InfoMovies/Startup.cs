@@ -16,6 +16,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
+using InfoMovies.Auth.Model;
 
 namespace InfoMovies
 {
@@ -43,8 +45,15 @@ namespace InfoMovies
             })
             .AddJwtBearer(options => 
             {
+                options.TokenValidationParameters.ValidAudience = _configuration["JWT:ValidAudience"];
+                options.TokenValidationParameters.ValidIssuer = _configuration["JWT:ValidIssuer"];
                 options.TokenValidationParameters.IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
             });
+            services.AddAuthorization(options => 
+            {
+                options.AddPolicy(PolicyNames.SameUser, policy => policy.Requirements.Add(new SameUserRequirement()));
+            });
+            services.AddSingleton<IAuthorizationHandler, SameUserAuthorizationHandler>();
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
             services.AddTransient<ICompaniesRepository, CompaniesRepository>();

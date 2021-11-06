@@ -228,3 +228,34 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20211102130522_add_userId_to_comment')
+BEGIN
+    ALTER TABLE [Comments] ADD [UserId] nvarchar(450) NOT NULL DEFAULT N'';
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20211102130522_add_userId_to_comment')
+BEGIN
+    CREATE INDEX [IX_Comments_UserId] ON [Comments] ([UserId]);
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20211102130522_add_userId_to_comment')
+BEGIN
+    ALTER TABLE [Comments] ADD CONSTRAINT [FK_Comments_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE;
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20211102130522_add_userId_to_comment')
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20211102130522_add_userId_to_comment', N'5.0.11');
+END;
+GO
+
+COMMIT;
+GO
+

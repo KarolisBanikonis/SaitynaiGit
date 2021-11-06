@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using InfoMovies.Auth.Model;
 using InfoMovies.Data.Dtos;
 using InfoMovies.Data.Entities;
 using InfoMovies.Data.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +41,7 @@ namespace InfoMovies.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = InfoMoviesUserRoles.Admin)]
         public async Task<ActionResult<CompanyDto>> Create(CreateCompanyDto dto)
         {
             var company = _mapper.Map<Company>(dto);
@@ -49,6 +52,7 @@ namespace InfoMovies.Controllers
         }
 
         [HttpPut("{companyId}")]
+        [Authorize(Roles = InfoMoviesUserRoles.Admin)]
         public async Task<ActionResult<CompanyDto>> Edit(int companyId, CreateCompanyDto dto)
         {
             var company = await _companiesRepository.Get(companyId);
@@ -62,6 +66,7 @@ namespace InfoMovies.Controllers
         }
 
         [HttpDelete("{companyId}")]
+        [Authorize(Roles = InfoMoviesUserRoles.Admin)]
         public async Task<ActionResult> Delete(int companyId)
         {
             var company = await _companiesRepository.Get(companyId);
